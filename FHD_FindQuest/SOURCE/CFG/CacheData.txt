@@ -1,0 +1,9 @@
+Bm {
+    FHDFindQuest {
+        InfoN=Mods\FHD_MODS\FHD_FindQuest\Data\Image\2TipsN.gi
+        InfoA=Mods\FHD_MODS\FHD_FindQuest\Data\Image\2TipsA.gi
+        InfoD=Mods\FHD_MODS\FHD_FindQuest\Data\Image\2TipsD.gi
+        HUD2=Mods\FHD_MODS\FHD_FindQuest\Data\Image\HUD2.gi
+        Mark=Mods\FHD_MODS\FHD_FindQuest\Data\Image\GNPoQ.gai
+    }
+}

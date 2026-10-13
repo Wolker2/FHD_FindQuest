@@ -1,0 +1,9 @@
+Name=FHD_FindQuest
+Section=FHD_MODS
+Author=На основе QuestMarker Prolog_D; FindQuest OpenAI
+Dependence=
+Conflict=
+Priority=1
+Languages=Rus
+SmallDescription=Задания до 35 пк, рамка HUD2, расстояния
+FullDescription=Текущие доступные задания: ваша система первая, остальные по алфавиту; расстояния в парсеках и адаптивная таблица HUD2. Совместим с FHD_QuestMarker_Preview.
