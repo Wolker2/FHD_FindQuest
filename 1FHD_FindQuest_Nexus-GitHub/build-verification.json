@@ -1,0 +1,78 @@
+{
+  "runtime_files": 11,
+  "source_derived_files": 11,
+  "byte_identical_to_original": true,
+  "changed_files": [],
+  "prebuilt_runtime_inputs_used": false,
+  "game_exe_used_for_build": false,
+  "dat_files": 3,
+  "native_dlls": 1,
+  "gi_files": 5,
+  "gai_files": 1,
+  "gai_frames": 20,
+  "resource_audit": {
+    "cache_references_checked": 5,
+    "missing": []
+  },
+  "python": "3.12.14",
+  "zlib": "1.3.2",
+  "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "ld": "GNU ld (GNU Binutils for Ubuntu) 2.42",
+  "sha256": {
+    "CFG/CacheData.dat": "733f15b31451d00aeae83f3f502acfbd2bf454805775f0e1767c25af3ca62754",
+    "CFG/Main.dat": "14a0799fef2a5caf04c7147acc2b6598cb66958608c2d0d2c1ced7c7ca0b665a",
+    "CFG/Rus/Lang.dat": "a71d3ba03f65ca2b0378d55e49a68ad2e61e77a6cd9d4d3dc17ac6e1072cec5f",
+    "Data/Image/2TipsA.gi": "db573d038442e87fc0778b5115da9c8cc84b9d74ca96b7f2a35d28f59e17e615",
+    "Data/Image/2TipsD.gi": "8b3d87e273c05d99c11dff3cf6697737b6db2308d9b637a7d1850bdce65fd61b",
+    "Data/Image/2TipsN.gi": "9f4d20eaceb4d689c2874a9e50eed8d63996250d9cb4d946d620c01c7f8dd061",
+    "Data/Image/GNPo.gi": "4088143304bc0739db6e74e7df88bc5bedc395c279d5a69a03e35d1de0ef3ed2",
+    "Data/Image/GNPoQ.gai": "8c932f6ae0fbe28ce1c100cfd93549e089a10959707ea1862c1ac2f9fed8b868",
+    "Data/Image/HUD2.gi": "21d967cbf5903e73ede1e8517fb02369316465b9cd93d5eead91dc04996953fd",
+    "ModuleInfo.txt": "a22c426a415cef737293d083189bb6a84d482ed53127288e604e870dc2a2f5b1",
+    "Native/FHDFindQuest.dll": "bb700552d13500c09559b9deb097fbdd85dc0a9fc8fc9b05730950f05c390cb3"
+  },
+  "package_sha256": "7de3eff27305ae7c302d219bb6eddbcbedcd1ea3bc7290e07a666dbcd2ef0431",
+  "game_executed": false,
+  "input_archive_sha256": "04ca017dcab11d6dde627d46339d9a4ddad29f591d7fad33b31232ed7a421b81",
+  "checks": {
+    "python_tests_passed": 4,
+    "python_tests_failed": 0,
+    "source_only_build_without_exe": "PASS",
+    "original_hashes_matched": "11/11",
+    "native_c_rebuild_byte_identical": true,
+    "dat_authoring_sources_byte_identical": true,
+    "gi_rebuilds": 5,
+    "gai_frames_recovered": 20,
+    "gai_rebuild_byte_identical": true,
+    "compiled_script_declarations_checked": 69,
+    "named_buttons_checked": 16,
+    "retained_code_ui_layout_checks": "PASS"
+  },
+  "target_exe": {
+    "sha256": "e43a4b15503c705eebe2d8ce5778c2a2fb090db515a3fd86d319e5c5aa692ebf",
+    "file_size": 4533760,
+    "pe_timestamp": "0x6AC53B97",
+    "size_of_image": "0x461000",
+    "image_base": "0x400000",
+    "included_in_source_package": false
+  },
+  "extended_native_checks": {
+    "unicorn_version": "2.1.4",
+    "source_pe_exports_and_guards": "PASS",
+    "actual_exe_dll_init_and_relocation": "PASS",
+    "registered_player_and_relation_checks": "PASS",
+    "bridge_results_and_context_restoration": "PASS",
+    "controlled_unwind_cleanup": "PASS",
+    "script_numeric_identifier_recognizer": "PASS",
+    "windows_game_executed": false,
+    "full_generator_battle_selector_windows_unwind_not_reproduced": true
+  },
+  "source_provenance": {
+    "author": "Prolog_D",
+    "version": "0.5.2",
+    "original_c_and_text_sources": "Supplied; used directly and byte-identically rebuilt",
+    "c_comment_change": "Documentation pointer only",
+    "graphics": "Recovered into explicit GI/GAI pixel and timing JSON"
+  },
+  "node": "v24.22.1"
+}

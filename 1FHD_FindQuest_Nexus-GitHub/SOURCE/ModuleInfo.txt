@@ -1,0 +1,14 @@
+Name=FHD_FindQuest
+Section=FHD_MODS
+Author=Prolog_D
+Dependence=
+Conflict=
+Priority=1
+Languages=Rus
+SmallDescription=Ищет задания в пределах 35 пк от игрока
+FullDescription=Текущие доступные задания: ваша система — первая, остальные — по алфавиту; расстояния в парсеках и адаптивная таблица.
+SmallDescription=------------------------------------  <color=0,200,255>ENG</color>  ----------------------------------------
+FullDescription=------------------------------------  <color=0,200,255>ENG</color>  ----------------------------------------
+Languages=Eng
+SmallDescription=Searches for missions within 35 pc of the player
+FullDescription=Currently available missions: your system is first, the rest are in alphabetical order; distances in parsecs and adaptive table.

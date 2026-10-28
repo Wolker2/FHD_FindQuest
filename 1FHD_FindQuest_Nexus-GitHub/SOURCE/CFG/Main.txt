@@ -1,0 +1,1438 @@
+ML ^{
+    StarMap ^{
+        Panel ^{
+            FHDFindQuestControl ^{
+                Panel ^{
+                    Name=FHDFindQuestControl
+                    Pos=764,162,-150
+                    Size=20,20
+                    PosAutoCorrection=True
+                    PosAutoCorrectionXCoef=1
+                    PosAutoCorrectionYCoef=0
+                    MoveWorld=False
+                    GraphButton ^{
+                        Name=FHDFindQuestButton
+                        Help=Help.FHDFindQuest
+                        ImageDown=GI,Bm.FHDFindQuest.InfoD
+                        ImageNormal=GI,Bm.FHDFindQuest.InfoN
+                        ImageNormalA=GI,Bm.FHDFindQuest.InfoA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        Pos=0,0,-1
+                        Size=20,20
+                        Style=Style.GB.SoundNormal
+                        OnPressCode ~{
+                            00=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.FHDFindQuest.Open'));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    Galaxy ^{
+        Panel ^{
+            Panel ^{
+            }
+            Panel ^{
+                GraphButton ~{
+                }
+                GraphButton ~{
+                }
+                GraphButton ~{
+                }
+                GraphButton ~{
+                    OnPressCode ~{
+                        03=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.FHDFindQuest.ClearMark'));
+                    }
+                }
+                Panel ^{
+                    FHDFindQuestOverlay ^{
+                        Image ^{
+                            Active=False
+                            Image=GAI,Bm.FHDFindQuest.Mark
+                            MouseBlocking=False
+                            MouseBlockingTest=False
+                            Name=FHDFindQuestMark
+                            Pos=0,0,-11
+                            Size=50,50
+                        }
+                    }
+                }
+            }
+        }
+    }
+    FHDFindQuestList ^{
+        Border=0,0,1024,768
+        CodeBeforeRun ~{
+            000=int w=GetGameOptions('ResolutionX');
+            001=int h=GetGameOptions('ResolutionY');
+            002=float scale=min(1.0,min((w-16)/1003.0,(h-16)/711.0));
+            003=int fw=round(1003*scale);int frameHeight=round(711*scale);
+            004=int tw=round(960*scale);int th=round(620*scale);
+            005=int pitch=max(27,round(32*scale));
+            006=CustomInterfaceSize('MainPanel',w,h);
+            007=CustomInterfaceSize('BGBuf',w,h);
+            008=CustomInterfacePos('BoardWindow',(w-fw)/2,(h-frameHeight)/2);
+            009=CustomInterfaceSize('BoardWindow',fw,frameHeight);
+            010=CustomInterfacePos('Window',round(22*scale),round(46*scale));
+            011=CustomInterfaceSize('Window',tw,th);
+            012=CustomInterfaceSize('Backdrop',tw,th+2);
+            013=CustomInterfaceState('HUD2',scale==1.0);
+            014=CustomInterfaceState('HUD2Compact',scale<1.0);
+            015=if(scale<1.0){CustomInterfaceSize('HUD2Compact',fw,frameHeight);UICheckElement('','HUD2Compact','Rescale','GI,Bm.FHDFindQuest.HUD2','GI');}
+            016=CustomInterfacePos('Title',round(20*scale),round(10*scale));
+            017=CustomInterfaceSize('Title',round(900*scale),29);
+            018=if(scale<0.85)CustomInterfaceText('Title','ЗАДАНИЯ ПРАВИТЕЛЬСТВ');
+            019=CustomInterfacePos('Page',round(20*scale),round(44*scale));
+            020=CustomInterfaceSize('Page',round(900*scale),23);
+            021=CustomInterfacePos('Hint',round(22*scale),th-94);
+            022=CustomInterfaceSize('Hint',round(916*scale),23);
+            023=CustomInterfacePos('Prev',round(22*scale),th-52);
+            024=CustomInterfacePos('Next',round(348*scale),th-52);
+            025=CustomInterfacePos('Cancel',tw-80,th-44);
+            026=int rowHeight=min(29,pitch-3);
+            027=CustomInterfacePos('HeadSystem',round(46*scale),round(79*scale));
+            028=CustomInterfaceSize('HeadSystem',round(144*scale),23);
+            029=CustomInterfacePos('HeadDistance',round(194*scale),round(79*scale));
+            030=CustomInterfaceSize('HeadDistance',round(78*scale),23);
+            031=CustomInterfacePos('HeadPlanet',round(276*scale),round(79*scale));
+            032=CustomInterfaceSize('HeadPlanet',round(174*scale),23);
+            033=CustomInterfacePos('HeadType',round(454*scale),round(79*scale));
+            034=CustomInterfaceSize('HeadType',round(172*scale),23);
+            035=CustomInterfacePos('HeadReward',round(630*scale),round(79*scale));
+            036=CustomInterfaceSize('HeadReward',round(140*scale),23);
+            037=CustomInterfacePos('HeadChecked',round(774*scale),round(79*scale));
+            038=CustomInterfaceSize('HeadChecked',round(160*scale),23);
+            039=CustomInterfacePos('Row0',0,round(114*scale)+0*pitch);
+            040=CustomInterfaceSize('Row0',tw,rowHeight);
+            041=CustomInterfacePos('Choose0',round(17*scale),0);
+            042=CustomInterfacePos('Row0System',round(46*scale),0);
+            043=CustomInterfaceSize('Row0System',round(144*scale),rowHeight);
+            044=CustomInterfacePos('Row0Distance',round(194*scale),0);
+            045=CustomInterfaceSize('Row0Distance',round(78*scale),rowHeight);
+            046=CustomInterfacePos('Row0Planet',round(276*scale),0);
+            047=CustomInterfaceSize('Row0Planet',round(174*scale),rowHeight);
+            048=CustomInterfacePos('Row0Type',round(454*scale),0);
+            049=CustomInterfaceSize('Row0Type',round(172*scale),rowHeight);
+            050=CustomInterfacePos('Row0Reward',round(630*scale),0);
+            051=CustomInterfaceSize('Row0Reward',round(140*scale),rowHeight);
+            052=CustomInterfacePos('Row0Checked',round(774*scale),0);
+            053=CustomInterfaceSize('Row0Checked',round(160*scale),rowHeight);
+            054=CustomInterfacePos('Row1',0,round(114*scale)+1*pitch);
+            055=CustomInterfaceSize('Row1',tw,rowHeight);
+            056=CustomInterfacePos('Choose1',round(17*scale),0);
+            057=CustomInterfacePos('Row1System',round(46*scale),0);
+            058=CustomInterfaceSize('Row1System',round(144*scale),rowHeight);
+            059=CustomInterfacePos('Row1Distance',round(194*scale),0);
+            060=CustomInterfaceSize('Row1Distance',round(78*scale),rowHeight);
+            061=CustomInterfacePos('Row1Planet',round(276*scale),0);
+            062=CustomInterfaceSize('Row1Planet',round(174*scale),rowHeight);
+            063=CustomInterfacePos('Row1Type',round(454*scale),0);
+            064=CustomInterfaceSize('Row1Type',round(172*scale),rowHeight);
+            065=CustomInterfacePos('Row1Reward',round(630*scale),0);
+            066=CustomInterfaceSize('Row1Reward',round(140*scale),rowHeight);
+            067=CustomInterfacePos('Row1Checked',round(774*scale),0);
+            068=CustomInterfaceSize('Row1Checked',round(160*scale),rowHeight);
+            069=CustomInterfacePos('Row2',0,round(114*scale)+2*pitch);
+            070=CustomInterfaceSize('Row2',tw,rowHeight);
+            071=CustomInterfacePos('Choose2',round(17*scale),0);
+            072=CustomInterfacePos('Row2System',round(46*scale),0);
+            073=CustomInterfaceSize('Row2System',round(144*scale),rowHeight);
+            074=CustomInterfacePos('Row2Distance',round(194*scale),0);
+            075=CustomInterfaceSize('Row2Distance',round(78*scale),rowHeight);
+            076=CustomInterfacePos('Row2Planet',round(276*scale),0);
+            077=CustomInterfaceSize('Row2Planet',round(174*scale),rowHeight);
+            078=CustomInterfacePos('Row2Type',round(454*scale),0);
+            079=CustomInterfaceSize('Row2Type',round(172*scale),rowHeight);
+            080=CustomInterfacePos('Row2Reward',round(630*scale),0);
+            081=CustomInterfaceSize('Row2Reward',round(140*scale),rowHeight);
+            082=CustomInterfacePos('Row2Checked',round(774*scale),0);
+            083=CustomInterfaceSize('Row2Checked',round(160*scale),rowHeight);
+            084=CustomInterfacePos('Row3',0,round(114*scale)+3*pitch);
+            085=CustomInterfaceSize('Row3',tw,rowHeight);
+            086=CustomInterfacePos('Choose3',round(17*scale),0);
+            087=CustomInterfacePos('Row3System',round(46*scale),0);
+            088=CustomInterfaceSize('Row3System',round(144*scale),rowHeight);
+            089=CustomInterfacePos('Row3Distance',round(194*scale),0);
+            090=CustomInterfaceSize('Row3Distance',round(78*scale),rowHeight);
+            091=CustomInterfacePos('Row3Planet',round(276*scale),0);
+            092=CustomInterfaceSize('Row3Planet',round(174*scale),rowHeight);
+            093=CustomInterfacePos('Row3Type',round(454*scale),0);
+            094=CustomInterfaceSize('Row3Type',round(172*scale),rowHeight);
+            095=CustomInterfacePos('Row3Reward',round(630*scale),0);
+            096=CustomInterfaceSize('Row3Reward',round(140*scale),rowHeight);
+            097=CustomInterfacePos('Row3Checked',round(774*scale),0);
+            098=CustomInterfaceSize('Row3Checked',round(160*scale),rowHeight);
+            099=CustomInterfacePos('Row4',0,round(114*scale)+4*pitch);
+            100=CustomInterfaceSize('Row4',tw,rowHeight);
+            101=CustomInterfacePos('Choose4',round(17*scale),0);
+            102=CustomInterfacePos('Row4System',round(46*scale),0);
+            103=CustomInterfaceSize('Row4System',round(144*scale),rowHeight);
+            104=CustomInterfacePos('Row4Distance',round(194*scale),0);
+            105=CustomInterfaceSize('Row4Distance',round(78*scale),rowHeight);
+            106=CustomInterfacePos('Row4Planet',round(276*scale),0);
+            107=CustomInterfaceSize('Row4Planet',round(174*scale),rowHeight);
+            108=CustomInterfacePos('Row4Type',round(454*scale),0);
+            109=CustomInterfaceSize('Row4Type',round(172*scale),rowHeight);
+            110=CustomInterfacePos('Row4Reward',round(630*scale),0);
+            111=CustomInterfaceSize('Row4Reward',round(140*scale),rowHeight);
+            112=CustomInterfacePos('Row4Checked',round(774*scale),0);
+            113=CustomInterfaceSize('Row4Checked',round(160*scale),rowHeight);
+            114=CustomInterfacePos('Row5',0,round(114*scale)+5*pitch);
+            115=CustomInterfaceSize('Row5',tw,rowHeight);
+            116=CustomInterfacePos('Choose5',round(17*scale),0);
+            117=CustomInterfacePos('Row5System',round(46*scale),0);
+            118=CustomInterfaceSize('Row5System',round(144*scale),rowHeight);
+            119=CustomInterfacePos('Row5Distance',round(194*scale),0);
+            120=CustomInterfaceSize('Row5Distance',round(78*scale),rowHeight);
+            121=CustomInterfacePos('Row5Planet',round(276*scale),0);
+            122=CustomInterfaceSize('Row5Planet',round(174*scale),rowHeight);
+            123=CustomInterfacePos('Row5Type',round(454*scale),0);
+            124=CustomInterfaceSize('Row5Type',round(172*scale),rowHeight);
+            125=CustomInterfacePos('Row5Reward',round(630*scale),0);
+            126=CustomInterfaceSize('Row5Reward',round(140*scale),rowHeight);
+            127=CustomInterfacePos('Row5Checked',round(774*scale),0);
+            128=CustomInterfaceSize('Row5Checked',round(160*scale),rowHeight);
+            129=CustomInterfacePos('Row6',0,round(114*scale)+6*pitch);
+            130=CustomInterfaceSize('Row6',tw,rowHeight);
+            131=CustomInterfacePos('Choose6',round(17*scale),0);
+            132=CustomInterfacePos('Row6System',round(46*scale),0);
+            133=CustomInterfaceSize('Row6System',round(144*scale),rowHeight);
+            134=CustomInterfacePos('Row6Distance',round(194*scale),0);
+            135=CustomInterfaceSize('Row6Distance',round(78*scale),rowHeight);
+            136=CustomInterfacePos('Row6Planet',round(276*scale),0);
+            137=CustomInterfaceSize('Row6Planet',round(174*scale),rowHeight);
+            138=CustomInterfacePos('Row6Type',round(454*scale),0);
+            139=CustomInterfaceSize('Row6Type',round(172*scale),rowHeight);
+            140=CustomInterfacePos('Row6Reward',round(630*scale),0);
+            141=CustomInterfaceSize('Row6Reward',round(140*scale),rowHeight);
+            142=CustomInterfacePos('Row6Checked',round(774*scale),0);
+            143=CustomInterfaceSize('Row6Checked',round(160*scale),rowHeight);
+            144=CustomInterfacePos('Row7',0,round(114*scale)+7*pitch);
+            145=CustomInterfaceSize('Row7',tw,rowHeight);
+            146=CustomInterfacePos('Choose7',round(17*scale),0);
+            147=CustomInterfacePos('Row7System',round(46*scale),0);
+            148=CustomInterfaceSize('Row7System',round(144*scale),rowHeight);
+            149=CustomInterfacePos('Row7Distance',round(194*scale),0);
+            150=CustomInterfaceSize('Row7Distance',round(78*scale),rowHeight);
+            151=CustomInterfacePos('Row7Planet',round(276*scale),0);
+            152=CustomInterfaceSize('Row7Planet',round(174*scale),rowHeight);
+            153=CustomInterfacePos('Row7Type',round(454*scale),0);
+            154=CustomInterfaceSize('Row7Type',round(172*scale),rowHeight);
+            155=CustomInterfacePos('Row7Reward',round(630*scale),0);
+            156=CustomInterfaceSize('Row7Reward',round(140*scale),rowHeight);
+            157=CustomInterfacePos('Row7Checked',round(774*scale),0);
+            158=CustomInterfaceSize('Row7Checked',round(160*scale),rowHeight);
+            159=CustomInterfacePos('Row8',0,round(114*scale)+8*pitch);
+            160=CustomInterfaceSize('Row8',tw,rowHeight);
+            161=CustomInterfacePos('Choose8',round(17*scale),0);
+            162=CustomInterfacePos('Row8System',round(46*scale),0);
+            163=CustomInterfaceSize('Row8System',round(144*scale),rowHeight);
+            164=CustomInterfacePos('Row8Distance',round(194*scale),0);
+            165=CustomInterfaceSize('Row8Distance',round(78*scale),rowHeight);
+            166=CustomInterfacePos('Row8Planet',round(276*scale),0);
+            167=CustomInterfaceSize('Row8Planet',round(174*scale),rowHeight);
+            168=CustomInterfacePos('Row8Type',round(454*scale),0);
+            169=CustomInterfaceSize('Row8Type',round(172*scale),rowHeight);
+            170=CustomInterfacePos('Row8Reward',round(630*scale),0);
+            171=CustomInterfaceSize('Row8Reward',round(140*scale),rowHeight);
+            172=CustomInterfacePos('Row8Checked',round(774*scale),0);
+            173=CustomInterfaceSize('Row8Checked',round(160*scale),rowHeight);
+            174=CustomInterfacePos('Row9',0,round(114*scale)+9*pitch);
+            175=CustomInterfaceSize('Row9',tw,rowHeight);
+            176=CustomInterfacePos('Choose9',round(17*scale),0);
+            177=CustomInterfacePos('Row9System',round(46*scale),0);
+            178=CustomInterfaceSize('Row9System',round(144*scale),rowHeight);
+            179=CustomInterfacePos('Row9Distance',round(194*scale),0);
+            180=CustomInterfaceSize('Row9Distance',round(78*scale),rowHeight);
+            181=CustomInterfacePos('Row9Planet',round(276*scale),0);
+            182=CustomInterfaceSize('Row9Planet',round(174*scale),rowHeight);
+            183=CustomInterfacePos('Row9Type',round(454*scale),0);
+            184=CustomInterfaceSize('Row9Type',round(172*scale),rowHeight);
+            185=CustomInterfacePos('Row9Reward',round(630*scale),0);
+            186=CustomInterfaceSize('Row9Reward',round(140*scale),rowHeight);
+            187=CustomInterfacePos('Row9Checked',round(774*scale),0);
+            188=CustomInterfaceSize('Row9Checked',round(160*scale),rowHeight);
+            189=CustomInterfacePos('Row10',0,round(114*scale)+10*pitch);
+            190=CustomInterfaceSize('Row10',tw,rowHeight);
+            191=CustomInterfacePos('Choose10',round(17*scale),0);
+            192=CustomInterfacePos('Row10System',round(46*scale),0);
+            193=CustomInterfaceSize('Row10System',round(144*scale),rowHeight);
+            194=CustomInterfacePos('Row10Distance',round(194*scale),0);
+            195=CustomInterfaceSize('Row10Distance',round(78*scale),rowHeight);
+            196=CustomInterfacePos('Row10Planet',round(276*scale),0);
+            197=CustomInterfaceSize('Row10Planet',round(174*scale),rowHeight);
+            198=CustomInterfacePos('Row10Type',round(454*scale),0);
+            199=CustomInterfaceSize('Row10Type',round(172*scale),rowHeight);
+            200=CustomInterfacePos('Row10Reward',round(630*scale),0);
+            201=CustomInterfaceSize('Row10Reward',round(140*scale),rowHeight);
+            202=CustomInterfacePos('Row10Checked',round(774*scale),0);
+            203=CustomInterfaceSize('Row10Checked',round(160*scale),rowHeight);
+            204=CustomInterfacePos('Row11',0,round(114*scale)+11*pitch);
+            205=CustomInterfaceSize('Row11',tw,rowHeight);
+            206=CustomInterfacePos('Choose11',round(17*scale),0);
+            207=CustomInterfacePos('Row11System',round(46*scale),0);
+            208=CustomInterfaceSize('Row11System',round(144*scale),rowHeight);
+            209=CustomInterfacePos('Row11Distance',round(194*scale),0);
+            210=CustomInterfaceSize('Row11Distance',round(78*scale),rowHeight);
+            211=CustomInterfacePos('Row11Planet',round(276*scale),0);
+            212=CustomInterfaceSize('Row11Planet',round(174*scale),rowHeight);
+            213=CustomInterfacePos('Row11Type',round(454*scale),0);
+            214=CustomInterfaceSize('Row11Type',round(172*scale),rowHeight);
+            215=CustomInterfacePos('Row11Reward',round(630*scale),0);
+            216=CustomInterfaceSize('Row11Reward',round(140*scale),rowHeight);
+            217=CustomInterfacePos('Row11Checked',round(774*scale),0);
+            218=CustomInterfaceSize('Row11Checked',round(160*scale),rowHeight);
+            219=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.FHDFindQuest.Fill'));
+        }
+        Panel ^{
+            Name=MainPanel
+            GraphBuf ^{
+                Name=BGBuf
+                Pos=0,0,9
+                Size=1024,768
+            }
+            Panel ^{
+                Name=BoardWindow
+                Pos=0,0,0
+                Size=1003,711
+                Image ^{
+                    Image=GI,Bm.FHDFindQuest.HUD2
+                    MouseBlocking=False
+                    MouseBlockingTest=False
+                    Name=HUD2
+                    Pos=0,0,-1
+                    Size=1003,711
+                }
+                GraphBuf ^{
+                    Active=False
+                    MouseBlocking=False
+                    MouseBlockingTest=False
+                    Name=HUD2Compact
+                    Pos=0,0,-1
+                    Size=1003,711
+                }
+            Panel ^{
+                Name=Window
+                Pos=22,46,0
+                Size=960,620
+                Frame ^{
+                    Color=15,26,38
+                    ColorFill=15,26,38
+                    Fill=True
+                    Kind=Rect
+                    Name=Backdrop
+                    Pos=0,0,3
+                    Size=960,622
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Ranger
+                    Name=Title
+                    Pos=20,10,-2
+                    Size=900,29
+                    Text=ПРАВИТЕЛЬСТВЕННЫЕ ЗАДАНИЯ
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Page
+                    Pos=20,44,-2
+                    Size=900,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2SmallBold
+                    Name=HeadSystem
+                    Pos=46,79,-2
+                    Size=144,29
+                    Text=Система
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2SmallBold
+                    Name=HeadDistance
+                    Pos=194,79,-2
+                    Size=78,29
+                    Text=Парсеки
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2SmallBold
+                    Name=HeadPlanet
+                    Pos=276,79,-2
+                    Size=174,29
+                    Text=Планета
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2SmallBold
+                    Name=HeadType
+                    Pos=454,79,-2
+                    Size=172,29
+                    Text=Тип
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2SmallBold
+                    Name=HeadReward
+                    Pos=630,79,-2
+                    Size=140,29
+                    Text=Награда
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2SmallBold
+                    Name=HeadChecked
+                    Pos=774,79,-2
+                    Size=160,29
+                    Text=Метка
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Hint
+                    Pos=22,526,-2
+                    Size=916,29
+                    Text=Ваша система - первая. + отмечает систему; сброс - штатной кнопкой карты.
+                    TextColor=230,240,245
+                }
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormShip2.2HoldLeftD
+                    ImageNormal=GI,Bm.FormShip2.2HoldLeftN
+                    ImageNormalA=GI,Bm.FormShip2.2HoldLeftA
+                    Kind=Normal
+                    KindHit=Graph
+                    Name=Prev
+                    OnPressCode ~{
+                        00=CloseCustomForm(2);
+                    }
+                    Pos=22,568,-3
+                    Size=20,36
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormShip2.2HoldRightD
+                    ImageNormal=GI,Bm.FormShip2.2HoldRightN
+                    ImageNormalA=GI,Bm.FormShip2.2HoldRightA
+                    Kind=Normal
+                    KindHit=Graph
+                    Name=Next
+                    OnPressCode ~{
+                        00=CloseCustomForm(3);
+                    }
+                    Pos=348,568,-3
+                    Size=20,36
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2CloseD
+                    ImageNormal=GI,Bm.FormCount2.2CloseN
+                    ImageNormalA=GI,Bm.FormCount2.2CloseA
+                    Kind=Normal
+                    KindHit=Graph
+                    Name=Cancel
+                    OnPressCode ~{
+                        00=CloseCustomForm(1);
+                    }
+                    Pos=880,576,-3
+                    Size=48,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Panel ^{
+                    Name=Row0
+                    Pos=0,114,-1
+                    Size=960,29
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2AddD
+                    ImageNormal=GI,Bm.FormCount2.2AddN
+                    ImageNormalA=GI,Bm.FormCount2.2AddA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=Choose0
+                    OnPressCode ~{
+                        00=CloseCustomForm(4);
+                    }
+                    Pos=17,0,-3
+                    Size=21,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row0System
+                    Pos=46,0,-2
+                    Size=144,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row0Distance
+                    Pos=194,0,-2
+                    Size=78,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row0Planet
+                    Pos=276,0,-2
+                    Size=174,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row0Type
+                    Pos=454,0,-2
+                    Size=172,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row0Reward
+                    Pos=630,0,-2
+                    Size=140,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row0Checked
+                    Pos=774,0,-2
+                    Size=160,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                }
+                Panel ^{
+                    Name=Row1
+                    Pos=0,146,-1
+                    Size=960,29
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2AddD
+                    ImageNormal=GI,Bm.FormCount2.2AddN
+                    ImageNormalA=GI,Bm.FormCount2.2AddA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=Choose1
+                    OnPressCode ~{
+                        00=CloseCustomForm(5);
+                    }
+                    Pos=17,0,-3
+                    Size=21,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row1System
+                    Pos=46,0,-2
+                    Size=144,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row1Distance
+                    Pos=194,0,-2
+                    Size=78,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row1Planet
+                    Pos=276,0,-2
+                    Size=174,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row1Type
+                    Pos=454,0,-2
+                    Size=172,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row1Reward
+                    Pos=630,0,-2
+                    Size=140,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row1Checked
+                    Pos=774,0,-2
+                    Size=160,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                }
+                Panel ^{
+                    Name=Row2
+                    Pos=0,178,-1
+                    Size=960,29
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2AddD
+                    ImageNormal=GI,Bm.FormCount2.2AddN
+                    ImageNormalA=GI,Bm.FormCount2.2AddA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=Choose2
+                    OnPressCode ~{
+                        00=CloseCustomForm(6);
+                    }
+                    Pos=17,0,-3
+                    Size=21,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row2System
+                    Pos=46,0,-2
+                    Size=144,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row2Distance
+                    Pos=194,0,-2
+                    Size=78,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row2Planet
+                    Pos=276,0,-2
+                    Size=174,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row2Type
+                    Pos=454,0,-2
+                    Size=172,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row2Reward
+                    Pos=630,0,-2
+                    Size=140,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row2Checked
+                    Pos=774,0,-2
+                    Size=160,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                }
+                Panel ^{
+                    Name=Row3
+                    Pos=0,210,-1
+                    Size=960,29
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2AddD
+                    ImageNormal=GI,Bm.FormCount2.2AddN
+                    ImageNormalA=GI,Bm.FormCount2.2AddA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=Choose3
+                    OnPressCode ~{
+                        00=CloseCustomForm(7);
+                    }
+                    Pos=17,0,-3
+                    Size=21,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row3System
+                    Pos=46,0,-2
+                    Size=144,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row3Distance
+                    Pos=194,0,-2
+                    Size=78,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row3Planet
+                    Pos=276,0,-2
+                    Size=174,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row3Type
+                    Pos=454,0,-2
+                    Size=172,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row3Reward
+                    Pos=630,0,-2
+                    Size=140,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row3Checked
+                    Pos=774,0,-2
+                    Size=160,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                }
+                Panel ^{
+                    Name=Row4
+                    Pos=0,242,-1
+                    Size=960,29
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2AddD
+                    ImageNormal=GI,Bm.FormCount2.2AddN
+                    ImageNormalA=GI,Bm.FormCount2.2AddA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=Choose4
+                    OnPressCode ~{
+                        00=CloseCustomForm(8);
+                    }
+                    Pos=17,0,-3
+                    Size=21,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row4System
+                    Pos=46,0,-2
+                    Size=144,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row4Distance
+                    Pos=194,0,-2
+                    Size=78,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row4Planet
+                    Pos=276,0,-2
+                    Size=174,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row4Type
+                    Pos=454,0,-2
+                    Size=172,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row4Reward
+                    Pos=630,0,-2
+                    Size=140,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row4Checked
+                    Pos=774,0,-2
+                    Size=160,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                }
+                Panel ^{
+                    Name=Row5
+                    Pos=0,274,-1
+                    Size=960,29
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2AddD
+                    ImageNormal=GI,Bm.FormCount2.2AddN
+                    ImageNormalA=GI,Bm.FormCount2.2AddA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=Choose5
+                    OnPressCode ~{
+                        00=CloseCustomForm(9);
+                    }
+                    Pos=17,0,-3
+                    Size=21,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row5System
+                    Pos=46,0,-2
+                    Size=144,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row5Distance
+                    Pos=194,0,-2
+                    Size=78,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row5Planet
+                    Pos=276,0,-2
+                    Size=174,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row5Type
+                    Pos=454,0,-2
+                    Size=172,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row5Reward
+                    Pos=630,0,-2
+                    Size=140,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row5Checked
+                    Pos=774,0,-2
+                    Size=160,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                }
+                Panel ^{
+                    Name=Row6
+                    Pos=0,306,-1
+                    Size=960,29
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2AddD
+                    ImageNormal=GI,Bm.FormCount2.2AddN
+                    ImageNormalA=GI,Bm.FormCount2.2AddA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=Choose6
+                    OnPressCode ~{
+                        00=CloseCustomForm(10);
+                    }
+                    Pos=17,0,-3
+                    Size=21,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row6System
+                    Pos=46,0,-2
+                    Size=144,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row6Distance
+                    Pos=194,0,-2
+                    Size=78,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row6Planet
+                    Pos=276,0,-2
+                    Size=174,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row6Type
+                    Pos=454,0,-2
+                    Size=172,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row6Reward
+                    Pos=630,0,-2
+                    Size=140,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row6Checked
+                    Pos=774,0,-2
+                    Size=160,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                }
+                Panel ^{
+                    Name=Row7
+                    Pos=0,338,-1
+                    Size=960,29
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2AddD
+                    ImageNormal=GI,Bm.FormCount2.2AddN
+                    ImageNormalA=GI,Bm.FormCount2.2AddA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=Choose7
+                    OnPressCode ~{
+                        00=CloseCustomForm(11);
+                    }
+                    Pos=17,0,-3
+                    Size=21,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row7System
+                    Pos=46,0,-2
+                    Size=144,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row7Distance
+                    Pos=194,0,-2
+                    Size=78,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row7Planet
+                    Pos=276,0,-2
+                    Size=174,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row7Type
+                    Pos=454,0,-2
+                    Size=172,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row7Reward
+                    Pos=630,0,-2
+                    Size=140,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row7Checked
+                    Pos=774,0,-2
+                    Size=160,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                }
+                Panel ^{
+                    Name=Row8
+                    Pos=0,370,-1
+                    Size=960,29
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2AddD
+                    ImageNormal=GI,Bm.FormCount2.2AddN
+                    ImageNormalA=GI,Bm.FormCount2.2AddA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=Choose8
+                    OnPressCode ~{
+                        00=CloseCustomForm(12);
+                    }
+                    Pos=17,0,-3
+                    Size=21,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row8System
+                    Pos=46,0,-2
+                    Size=144,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row8Distance
+                    Pos=194,0,-2
+                    Size=78,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row8Planet
+                    Pos=276,0,-2
+                    Size=174,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row8Type
+                    Pos=454,0,-2
+                    Size=172,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row8Reward
+                    Pos=630,0,-2
+                    Size=140,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row8Checked
+                    Pos=774,0,-2
+                    Size=160,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                }
+                Panel ^{
+                    Name=Row9
+                    Pos=0,402,-1
+                    Size=960,29
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2AddD
+                    ImageNormal=GI,Bm.FormCount2.2AddN
+                    ImageNormalA=GI,Bm.FormCount2.2AddA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=Choose9
+                    OnPressCode ~{
+                        00=CloseCustomForm(13);
+                    }
+                    Pos=17,0,-3
+                    Size=21,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row9System
+                    Pos=46,0,-2
+                    Size=144,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row9Distance
+                    Pos=194,0,-2
+                    Size=78,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row9Planet
+                    Pos=276,0,-2
+                    Size=174,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row9Type
+                    Pos=454,0,-2
+                    Size=172,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row9Reward
+                    Pos=630,0,-2
+                    Size=140,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row9Checked
+                    Pos=774,0,-2
+                    Size=160,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                }
+                Panel ^{
+                    Name=Row10
+                    Pos=0,434,-1
+                    Size=960,29
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2AddD
+                    ImageNormal=GI,Bm.FormCount2.2AddN
+                    ImageNormalA=GI,Bm.FormCount2.2AddA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=Choose10
+                    OnPressCode ~{
+                        00=CloseCustomForm(14);
+                    }
+                    Pos=17,0,-3
+                    Size=21,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row10System
+                    Pos=46,0,-2
+                    Size=144,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row10Distance
+                    Pos=194,0,-2
+                    Size=78,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row10Planet
+                    Pos=276,0,-2
+                    Size=174,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row10Type
+                    Pos=454,0,-2
+                    Size=172,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row10Reward
+                    Pos=630,0,-2
+                    Size=140,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row10Checked
+                    Pos=774,0,-2
+                    Size=160,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                }
+                Panel ^{
+                    Name=Row11
+                    Pos=0,466,-1
+                    Size=960,29
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormCount2.2AddD
+                    ImageNormal=GI,Bm.FormCount2.2AddN
+                    ImageNormalA=GI,Bm.FormCount2.2AddA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=Choose11
+                    OnPressCode ~{
+                        00=CloseCustomForm(15);
+                    }
+                    Pos=17,0,-3
+                    Size=21,21
+                    Style=Style.GB.SoundNormal
+                    UpOnlyDown=True
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row11System
+                    Pos=46,0,-2
+                    Size=144,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row11Distance
+                    Pos=194,0,-2
+                    Size=78,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row11Planet
+                    Pos=276,0,-2
+                    Size=174,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row11Type
+                    Pos=454,0,-2
+                    Size=172,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row11Reward
+                    Pos=630,0,-2
+                    Size=140,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=CenterEx
+                    Font=Font.2Small
+                    Name=Row11Checked
+                    Pos=774,0,-2
+                    Size=160,29
+                    Text=
+                    TextColor=230,240,245
+                }
+                }
+            }
+            }
+        }
+    }
+}
+Data ^{
+    ScriptLibs ^{
+        FHDFindQuestNative ~{
+            Path=Mods\FHD_MODS\FHD_FindQuest\Native\FHDFindQuest.dll
+            Init=int,FHDFindQuest_Init
+            Probe=int,FHDFindQuest_Probe,dword
+            Reward=int,FHDFindQuest_Reward
+        }
+    }
+}
