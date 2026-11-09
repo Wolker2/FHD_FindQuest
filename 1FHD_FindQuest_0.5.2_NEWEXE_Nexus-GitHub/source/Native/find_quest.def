@@ -1,0 +1,5 @@
+LIBRARY FHDFindQuest.dll
+EXPORTS
+ FHDFindQuest_Init=FHDFindQuest_Init
+ FHDFindQuest_Probe=FHDFindQuest_Probe
+ FHDFindQuest_Reward=FHDFindQuest_Reward

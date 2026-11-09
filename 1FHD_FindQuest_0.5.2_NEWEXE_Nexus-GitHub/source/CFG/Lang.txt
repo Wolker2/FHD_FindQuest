@@ -1,0 +1,243 @@
+Help ~{
+    FHDFindQuest=Доступные сейчас задания в открытых системах до 35 парсеков
+}
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+            FHDFindQuestMenu ^{
+                Name=Таблица правительственных заданий
+                Description=Служебные данные открытой таблицы правительственных заданий
+                Icon=0
+            }
+        }
+    }
+}
+Script ^{
+    FHDFindQuest ^{
+        ClearMark ^{
+            00=InterfaceState('Galaxy','FHDFindQuestMark',-1);
+            01=InterfacePos('Galaxy','FHDFindQuestMark',0,0,0);
+        }
+        PlaceMark ^{
+            00=if(!star)exit;
+            01=float x=CoordX(star)*100;
+            02=x=x/150;
+            03=x=x*768;
+            04=x=x/100;
+            05=float y=CoordY(star)*527;
+            06=y=y/100;
+            07=InterfacePos('Galaxy','FHDFindQuestMark',-25+x+CoordX(star)/5,-25+y,0);
+            08=InterfaceState('Galaxy','FHDFindQuestMark',1);
+            09=if(CurrentForm()!='Galaxy')RunChildForm('Galaxy',2);
+        }
+        Fill ^{
+            000=int menu=ShipFindCustomShipInfoByType(Player(),'FHDFindQuestMenu');
+            001=if(menu<0){CloseCustomForm();exit;}
+            002=int visible=ShipCustomShipInfoData(Player(),menu,1);
+            003=int page=ShipCustomShipInfoData(Player(),menu,2);
+            004=int pages=ShipCustomShipInfoData(Player(),menu,3);
+            005=str pageRows=ShipCustomShipInfoTextData(Player(),menu,1);
+            006=CustomInterfaceText('Page','Страница '+(page+1)+' / '+pages+'   -   '+ShipCustomShipInfoTextData(Player(),menu,2));
+            007=if(page<1)CustomInterfaceState('Prev',2);
+            008=if(page+1>=pages)CustomInterfaceState('Next',2);
+            009=CustomInterfaceState('Row0',0<visible);
+            010=if(0<visible)
+            011={
+            012=str row0=GetParFromString(pageRows,'\n',0,0);
+            013=CustomInterfaceText('Row0System',GetParFromString(row0,'|',0,1));
+            014=CustomInterfaceText('Row0Planet',GetParFromString(row0,'|',1,1));
+            015=CustomInterfaceText('Row0Type',GetParFromString(row0,'|',2,1));
+            016=CustomInterfaceText('Row0Reward',GetParFromString(row0,'|',3,1));
+            017=CustomInterfaceText('Row0Checked',GetParFromString(row0,'|',4,1));CustomInterfaceText('Row0Distance',GetParFromString(row0,'|',5,1));
+            018=}
+            019=CustomInterfaceState('Row1',1<visible);
+            020=if(1<visible)
+            021={
+            022=str row1=GetParFromString(pageRows,'\n',1,0);
+            023=CustomInterfaceText('Row1System',GetParFromString(row1,'|',0,1));
+            024=CustomInterfaceText('Row1Planet',GetParFromString(row1,'|',1,1));
+            025=CustomInterfaceText('Row1Type',GetParFromString(row1,'|',2,1));
+            026=CustomInterfaceText('Row1Reward',GetParFromString(row1,'|',3,1));
+            027=CustomInterfaceText('Row1Checked',GetParFromString(row1,'|',4,1));CustomInterfaceText('Row1Distance',GetParFromString(row1,'|',5,1));
+            028=}
+            029=CustomInterfaceState('Row2',2<visible);
+            030=if(2<visible)
+            031={
+            032=str row2=GetParFromString(pageRows,'\n',2,0);
+            033=CustomInterfaceText('Row2System',GetParFromString(row2,'|',0,1));
+            034=CustomInterfaceText('Row2Planet',GetParFromString(row2,'|',1,1));
+            035=CustomInterfaceText('Row2Type',GetParFromString(row2,'|',2,1));
+            036=CustomInterfaceText('Row2Reward',GetParFromString(row2,'|',3,1));
+            037=CustomInterfaceText('Row2Checked',GetParFromString(row2,'|',4,1));CustomInterfaceText('Row2Distance',GetParFromString(row2,'|',5,1));
+            038=}
+            039=CustomInterfaceState('Row3',3<visible);
+            040=if(3<visible)
+            041={
+            042=str row3=GetParFromString(pageRows,'\n',3,0);
+            043=CustomInterfaceText('Row3System',GetParFromString(row3,'|',0,1));
+            044=CustomInterfaceText('Row3Planet',GetParFromString(row3,'|',1,1));
+            045=CustomInterfaceText('Row3Type',GetParFromString(row3,'|',2,1));
+            046=CustomInterfaceText('Row3Reward',GetParFromString(row3,'|',3,1));
+            047=CustomInterfaceText('Row3Checked',GetParFromString(row3,'|',4,1));CustomInterfaceText('Row3Distance',GetParFromString(row3,'|',5,1));
+            048=}
+            049=CustomInterfaceState('Row4',4<visible);
+            050=if(4<visible)
+            051={
+            052=str row4=GetParFromString(pageRows,'\n',4,0);
+            053=CustomInterfaceText('Row4System',GetParFromString(row4,'|',0,1));
+            054=CustomInterfaceText('Row4Planet',GetParFromString(row4,'|',1,1));
+            055=CustomInterfaceText('Row4Type',GetParFromString(row4,'|',2,1));
+            056=CustomInterfaceText('Row4Reward',GetParFromString(row4,'|',3,1));
+            057=CustomInterfaceText('Row4Checked',GetParFromString(row4,'|',4,1));CustomInterfaceText('Row4Distance',GetParFromString(row4,'|',5,1));
+            058=}
+            059=CustomInterfaceState('Row5',5<visible);
+            060=if(5<visible)
+            061={
+            062=str row5=GetParFromString(pageRows,'\n',5,0);
+            063=CustomInterfaceText('Row5System',GetParFromString(row5,'|',0,1));
+            064=CustomInterfaceText('Row5Planet',GetParFromString(row5,'|',1,1));
+            065=CustomInterfaceText('Row5Type',GetParFromString(row5,'|',2,1));
+            066=CustomInterfaceText('Row5Reward',GetParFromString(row5,'|',3,1));
+            067=CustomInterfaceText('Row5Checked',GetParFromString(row5,'|',4,1));CustomInterfaceText('Row5Distance',GetParFromString(row5,'|',5,1));
+            068=}
+            069=CustomInterfaceState('Row6',6<visible);
+            070=if(6<visible)
+            071={
+            072=str row6=GetParFromString(pageRows,'\n',6,0);
+            073=CustomInterfaceText('Row6System',GetParFromString(row6,'|',0,1));
+            074=CustomInterfaceText('Row6Planet',GetParFromString(row6,'|',1,1));
+            075=CustomInterfaceText('Row6Type',GetParFromString(row6,'|',2,1));
+            076=CustomInterfaceText('Row6Reward',GetParFromString(row6,'|',3,1));
+            077=CustomInterfaceText('Row6Checked',GetParFromString(row6,'|',4,1));CustomInterfaceText('Row6Distance',GetParFromString(row6,'|',5,1));
+            078=}
+            079=CustomInterfaceState('Row7',7<visible);
+            080=if(7<visible)
+            081={
+            082=str row7=GetParFromString(pageRows,'\n',7,0);
+            083=CustomInterfaceText('Row7System',GetParFromString(row7,'|',0,1));
+            084=CustomInterfaceText('Row7Planet',GetParFromString(row7,'|',1,1));
+            085=CustomInterfaceText('Row7Type',GetParFromString(row7,'|',2,1));
+            086=CustomInterfaceText('Row7Reward',GetParFromString(row7,'|',3,1));
+            087=CustomInterfaceText('Row7Checked',GetParFromString(row7,'|',4,1));CustomInterfaceText('Row7Distance',GetParFromString(row7,'|',5,1));
+            088=}
+            089=CustomInterfaceState('Row8',8<visible);
+            090=if(8<visible)
+            091={
+            092=str row8=GetParFromString(pageRows,'\n',8,0);
+            093=CustomInterfaceText('Row8System',GetParFromString(row8,'|',0,1));
+            094=CustomInterfaceText('Row8Planet',GetParFromString(row8,'|',1,1));
+            095=CustomInterfaceText('Row8Type',GetParFromString(row8,'|',2,1));
+            096=CustomInterfaceText('Row8Reward',GetParFromString(row8,'|',3,1));
+            097=CustomInterfaceText('Row8Checked',GetParFromString(row8,'|',4,1));CustomInterfaceText('Row8Distance',GetParFromString(row8,'|',5,1));
+            098=}
+            099=CustomInterfaceState('Row9',9<visible);
+            100=if(9<visible)
+            101={
+            102=str row9=GetParFromString(pageRows,'\n',9,0);
+            103=CustomInterfaceText('Row9System',GetParFromString(row9,'|',0,1));
+            104=CustomInterfaceText('Row9Planet',GetParFromString(row9,'|',1,1));
+            105=CustomInterfaceText('Row9Type',GetParFromString(row9,'|',2,1));
+            106=CustomInterfaceText('Row9Reward',GetParFromString(row9,'|',3,1));
+            107=CustomInterfaceText('Row9Checked',GetParFromString(row9,'|',4,1));CustomInterfaceText('Row9Distance',GetParFromString(row9,'|',5,1));
+            108=}
+            109=CustomInterfaceState('Row10',10<visible);
+            110=if(10<visible)
+            111={
+            112=str row10=GetParFromString(pageRows,'\n',10,0);
+            113=CustomInterfaceText('Row10System',GetParFromString(row10,'|',0,1));
+            114=CustomInterfaceText('Row10Planet',GetParFromString(row10,'|',1,1));
+            115=CustomInterfaceText('Row10Type',GetParFromString(row10,'|',2,1));
+            116=CustomInterfaceText('Row10Reward',GetParFromString(row10,'|',3,1));
+            117=CustomInterfaceText('Row10Checked',GetParFromString(row10,'|',4,1));CustomInterfaceText('Row10Distance',GetParFromString(row10,'|',5,1));
+            118=}
+            119=CustomInterfaceState('Row11',11<visible);
+            120=if(11<visible)
+            121={
+            122=str row11=GetParFromString(pageRows,'\n',11,0);
+            123=CustomInterfaceText('Row11System',GetParFromString(row11,'|',0,1));
+            124=CustomInterfaceText('Row11Planet',GetParFromString(row11,'|',1,1));
+            125=CustomInterfaceText('Row11Type',GetParFromString(row11,'|',2,1));
+            126=CustomInterfaceText('Row11Reward',GetParFromString(row11,'|',3,1));
+            127=CustomInterfaceText('Row11Checked',GetParFromString(row11,'|',4,1));CustomInterfaceText('Row11Distance',GetParFromString(row11,'|',5,1));
+            128=}
+        }
+        Open ^{
+            000=unknown init=ImportedFunction('FHDFindQuestNative','Init');
+            001=int initResult=init();
+            002=unknown probe=ImportedFunction('FHDFindQuestNative','Probe');
+            003=unknown rewardFn=ImportedFunction('FHDFindQuestNative','Reward');
+            004=unknown rows=newarray(1);rows[0]='';
+            005=unknown planets=newarray(1);planets[0]=0;unknown current=newarray(1);current[0]=0;
+            006=int count=0;int unavailable=(initResult!=0);
+            007=dword playerStar=ShipStar(Player());if(!playerStar){unavailable=1;initResult=-1;}
+            008=for(int s=0;initResult==0 && s<GalaxyStars();s=s+1)
+            009={
+            010=dword star=GalaxyStar(s);if(!star)continue;
+            011=if(star!=playerStar && !SectorVisible(StarToCon(star)))continue;
+            012=if(StarOwner(star)!=0)continue;
+            013=int distance=0;if(star!=playerStar)distance=round(sqrt(Dist2Star(playerStar,star)));if(distance>35)continue;
+            014=for(int p=0;p<StarPlanets(star);p=p+1)
+            015={
+            016=dword planet=StarPlanets(star,p);if(!planet)continue;
+            017=int owner=PlanetOwner(planet);if(owner>4 && owner!=7)continue;
+            018=int kind=probe(planet);
+            019=if(kind==-2){unavailable=1;break;}
+            020=if(kind<0 || kind>5)continue;
+            021=str type='Квест';
+            022=if(kind==0)type='Доставка';
+            023=if(kind==1)type='Уничтожить';
+            024=if(kind==3 || kind==4)type='Охрана';
+            025=if(kind==5)type='Планетарный бой';
+            026=str reward=rewardFn()+' кр.';if(kind==5)reward='-';
+            027=str row=StarName(star)+'|'+PlanetName(planet)+'|'+type+'|'+reward+'|Отметить|'+distance+' пк';
+            028=if(count==0){rows[0]=row;planets[0]=Id(planet);current[0]=(star==playerStar);}
+            029=else{ArrayAdd(rows,row);ArrayAdd(planets,Id(planet));ArrayAdd(current,(star==playerStar));}
+            030=count=count+1;
+            031=}
+            032=if(unavailable)break;
+            033=}
+            034=for(int i=1;i<count;i=i+1)
+            035={
+            036=for(int j=i;j>0;j=j-1)
+            037={
+            038=str left=rows[j-1];str right=rows[j];
+            039=if(current[j-1]==current[j]){str leftName=GetParFromString(left,'|',0,1);str rightName=GetParFromString(right,'|',0,1);
+            040=if(leftName==rightName){leftName=GetParFromString(left,'|',1,1);rightName=GetParFromString(right,'|',1,1);}
+            041=if(min(leftName,rightName)==leftName)break;}else if(current[j-1]>current[j])break;
+            042=int leftPlanet=planets[j-1];rows[j-1]=right;rows[j]=left;planets[j-1]=planets[j];planets[j]=leftPlanet;int leftCurrent=current[j-1];current[j-1]=current[j];current[j]=leftCurrent;
+            043=}
+            044=}
+            045=if(count==0 || unavailable)
+            046={
+            047=rows[0]='-|-|Нет доступных заданий|-|-|-';planets[0]=0;
+            048=if(unavailable)rows[0]='-|-|Сканирование недоступно|-|Код '+initResult+'|-';
+            049=count=1;
+            050=}
+            051=ShipDeleteCustomShipInfo(Player(),'FHDFindQuestMenu');
+            052=int menu=ShipAddCustomShipInfo(Player(),'FHDFindQuestMenu','NoShow',0,0,0,'','','');
+            053=float scale=min(1.0,min((GetGameOptions('ResolutionX')-16)/1003.0,(GetGameOptions('ResolutionY')-16)/711.0));int pitch=max(27,round(32*scale));int capacity=min(12,max(1,round((round(620*scale)-106-round(114*scale))/pitch-0.4999)));int page=0;int pages=(count+capacity-1)/capacity;int keepOpen=1;
+            054=while(keepOpen)
+            055={
+            056=int visible=count-page*capacity;if(visible>capacity)visible=capacity;
+            057=str pageRows='';
+            058=for(int r=0;r<visible;r=r+1){if(r>0)pageRows=pageRows+'\n';pageRows=pageRows+rows[page*capacity+r];}
+            059=ShipCustomShipInfoData(Player(),menu,1,visible);
+            060=ShipCustomShipInfoData(Player(),menu,2,page);
+            061=ShipCustomShipInfoData(Player(),menu,3,pages);
+            062=ShipCustomShipInfoTextData(Player(),menu,1,pageRows);
+            063=ShipCustomShipInfoTextData(Player(),menu,2,'до 35 пк; доступно: '+(count-(planets[0]==0)));
+            064=int choice=OpenCustomForm('FHDFindQuestList');
+            065=if(choice==2 && page>0)page=page-1;
+            066=else if(choice==3 && page+1<pages)page=page+1;
+            067=else if(choice>=4 && choice<4+visible)
+            068={
+            069=int selected=planets[page*capacity+choice-4];
+            070=if(selected>0){dword location=IdToPlanet(selected);if(location)ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.FHDFindQuest.PlaceMark'),'star',PlanetToStar(location));}
+            071=keepOpen=0;
+            072=}
+            073=else keepOpen=0;
+            074=}
+            075=ShipDeleteCustomShipInfo(Player(),menu);
+        }
+    }
+}
