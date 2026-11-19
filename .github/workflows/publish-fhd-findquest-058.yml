@@ -1,0 +1,33 @@
+name: Recover FHD_FindQuest 0.5.8 original sources
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-fhd-findquest-058.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image conversion toolkit
+        run: git clone --depth=1 https://github.com/Xenomorphchyma/SRHD-XenoModKit.git /tmp/SRHD-XenoModKit
+      - name: Verify ZIP and export editable sources
+        env:
+          PYTHONPATH: /tmp/SRHD-XenoModKit:1FHD_FindQuest_0.5.8_Nexus-GitHub/tools
+        run: |
+          python '1FHD_FindQuest_0.5.8_Nexus-GitHub/tools/nexus_source_export.py' --archive '1FHD_FindQuest_0.5.8_Nexus-GitHub/install/FHD_FindQuest_0.5.8.zip' --target '1FHD_FindQuest_0.5.8_Nexus-GitHub' --sha256 af36e3079c174fc9755c0786cc0bdd41c0ee913952ab7291850d79bb2150e71e --mod 'FHD_FindQuest'
+      - name: Commit verified source
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- '1FHD_FindQuest_0.5.8_Nexus-GitHub/SOURCE' '1FHD_FindQuest_0.5.8_Nexus-GitHub/VALIDATION_REPORT.json'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Extract FHD_FindQuest 0.5.8 original source'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

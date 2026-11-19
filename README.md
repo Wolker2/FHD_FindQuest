@@ -22,3 +22,9 @@
 - [Оригинальный архив FHD_FindQuest.rar](FHD_FindQuest.rar)
 
 Предыдущие версии и файлы сохранены без изменений. Отдельное игровое тестирование после повторной загрузки не проводилось.
+
+
+## FHD_FindQuest 0.5.8
+
+- [Установочный архив](1FHD_FindQuest_0.5.8_Nexus-GitHub/install/FHD_FindQuest_0.5.8.zip)
+- [Исходники, материалы и проверка](1FHD_FindQuest_0.5.8_Nexus-GitHub)
