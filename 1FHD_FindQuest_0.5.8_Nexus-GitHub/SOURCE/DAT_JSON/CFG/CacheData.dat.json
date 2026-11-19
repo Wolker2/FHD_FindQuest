@@ -1,0 +1,49 @@
+{
+  "format": "cachedata",
+  "seed": 1369621460,
+  "root": {
+    "entries": [
+      {
+        "kind": "block",
+        "name": "Bm",
+        "value": {
+          "entries": [
+            {
+              "kind": "block",
+              "name": "FHDFindQuest",
+              "value": {
+                "entries": [
+                  {
+                    "kind": "parameter",
+                    "name": "HUD2",
+                    "value": "Mods\\FHD_MODS\\FHD_FindQuest\\Data\\Image\\HUD2.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "InfoA",
+                    "value": "Mods\\FHD_MODS\\FHD_FindQuest\\Data\\Image\\2TipsA.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "InfoD",
+                    "value": "Mods\\FHD_MODS\\FHD_FindQuest\\Data\\Image\\2TipsD.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "InfoN",
+                    "value": "Mods\\FHD_MODS\\FHD_FindQuest\\Data\\Image\\2TipsN.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "Mark",
+                    "value": "Mods\\FHD_MODS\\FHD_FindQuest\\Data\\Image\\GNPoQ.gai"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

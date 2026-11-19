@@ -1,0 +1,14 @@
+Name=FHD_FindQuest
+Section=FHD_MODS
+Author=Prolog_D
+Dependence=
+Conflict=
+Priority=1
+Languages=Rus
+SmallDescription=»щет задани€ и показывает конечные пункты в пределах 35 пк
+FullDescription=“екущие доступные задани€: ваша система Ч перва€, остальные Ч по алфавиту; рассто€ни€ в парсеках и адаптивна€ таблица.
+SmallDescription=------------------------------------  <color=0,200,255>ENG</color>  ----------------------------------------
+FullDescription=------------------------------------  <color=0,200,255>ENG</color>  ----------------------------------------
+Languages=Eng
+SmallDescription=Finds missions and their destinations within 35 pc
+FullDescription=Currently available missions: your system is first, the rest are in alphabetical order; distances in parsecs and adaptive table.

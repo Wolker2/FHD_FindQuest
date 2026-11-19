@@ -1,0 +1,64 @@
+{
+  "mod": "FHD_FindQuest",
+  "source_archive": "FHD_FindQuest_0.5.8.zip",
+  "archive_sha256": "af36e3079c174fc9755c0786cc0bdd41c0ee913952ab7291850d79bb2150e71e",
+  "archive_file_count": 12,
+  "original_files_in_source": 11,
+  "text_or_code_files": 1,
+  "byte_exact_DAT_to_JSON": 4,
+  "png_files": 5,
+  "data_loss_in_original_archive": false,
+  "dll_source_recovered_from_compiled_binary": false,
+  "game_tested": false,
+  "warnings": [],
+  "files": {
+    "Mods/FHD_MODS/FHD_FindQuest/CFG/CacheData.dat": {
+      "size": 165,
+      "sha256": "733f15b31451d00aeae83f3f502acfbd2bf454805775f0e1767c25af3ca62754"
+    },
+    "Mods/FHD_MODS/FHD_FindQuest/CFG/Eng/Lang.dat": {
+      "size": 4110,
+      "sha256": "950914d809e4909c1a92cad63f20872a6813c44233197f308f45b4baaf0fc0f8"
+    },
+    "Mods/FHD_MODS/FHD_FindQuest/CFG/Main.dat": {
+      "size": 4920,
+      "sha256": "cf02132a481c0c738caa339c9b87b86edd622f0357a9724f418aaa1dc10f605c"
+    },
+    "Mods/FHD_MODS/FHD_FindQuest/CFG/Rus/Lang.dat": {
+      "size": 4110,
+      "sha256": "950914d809e4909c1a92cad63f20872a6813c44233197f308f45b4baaf0fc0f8"
+    },
+    "Mods/FHD_MODS/FHD_FindQuest/Data/Image/2TipsA.gi": {
+      "size": 1643,
+      "sha256": "0955d710a70cd6f6584236f6224d92191a65738c22c4b62faf914c70b05189d5"
+    },
+    "Mods/FHD_MODS/FHD_FindQuest/Data/Image/2TipsD.gi": {
+      "size": 1643,
+      "sha256": "e2e377b00d8d6be279f1c4c603b8b345cd5af4f9cbe020ff4f0bae09dd291923"
+    },
+    "Mods/FHD_MODS/FHD_FindQuest/Data/Image/2TipsN.gi": {
+      "size": 1643,
+      "sha256": "1552e6f1da55ed3d38a9c616292beabad694efc0c59951ceb6603567ad8c0ec0"
+    },
+    "Mods/FHD_MODS/FHD_FindQuest/Data/Image/GNPo.gi": {
+      "size": 562,
+      "sha256": "4088143304bc0739db6e74e7df88bc5bedc395c279d5a69a03e35d1de0ef3ed2"
+    },
+    "Mods/FHD_MODS/FHD_FindQuest/Data/Image/GNPoQ.gai": {
+      "size": 40867,
+      "sha256": "8c932f6ae0fbe28ce1c100cfd93549e089a10959707ea1862c1ac2f9fed8b868"
+    },
+    "Mods/FHD_MODS/FHD_FindQuest/Data/Image/HUD2.gi": {
+      "size": 370912,
+      "sha256": "21d967cbf5903e73ede1e8517fb02369316465b9cd93d5eead91dc04996953fd"
+    },
+    "Mods/FHD_MODS/FHD_FindQuest/ModuleInfo.txt": {
+      "size": 800,
+      "sha256": "0fd3010e4e711ecafe671b1dd2b161e2fa2bb70e73946850db09b2c913a76e3d"
+    },
+    "Mods/FHD_MODS/FHD_FindQuest/Native/FHDFindQuest.dll": {
+      "size": 6784,
+      "sha256": "2cf9783fd62906cb03f35dad0e5130e20329fe8f3a8eae1c605968ae6af0e9e6"
+    }
+  }
+}

@@ -1,0 +1,2267 @@
+{
+  "format": "blockpar",
+  "seed": 1369621460,
+  "root": {
+    "entries": [
+      {
+        "kind": "block",
+        "name": "Help",
+        "value": {
+          "entries": [
+            {
+              "kind": "parameter",
+              "name": "FHDFindQuest",
+              "value": "Доступные сейчас задания в открытых системах до 35 парсеков",
+              "sort_meta": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "parameter",
+              "name": "FHDFindQuestTarget",
+              "value": "ЛКМ: показать конечный пункт задания на галактической карте. Метка исчезнет после закрытия карты.",
+              "sort_meta": [
+                0,
+                1
+              ]
+            }
+          ],
+          "sorted": true
+        },
+        "sort_meta": [
+          0,
+          1
+        ]
+      },
+      {
+        "kind": "block",
+        "name": "Script",
+        "value": {
+          "entries": [
+            {
+              "kind": "block",
+              "name": "FHDFindQuest",
+              "value": {
+                "entries": [
+                  {
+                    "kind": "block",
+                    "name": "ClearMark",
+                    "value": {
+                      "entries": [
+                        {
+                          "kind": "parameter",
+                          "name": "00",
+                          "value": "InterfaceState('Galaxy','FHDFindQuestMark',-1);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "01",
+                          "value": "InterfacePos('Galaxy','FHDFindQuestMark',0,0,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        }
+                      ],
+                      "sorted": true
+                    },
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "block",
+                    "name": "Fill",
+                    "value": {
+                      "entries": [
+                        {
+                          "kind": "parameter",
+                          "name": "000",
+                          "value": "int menu=ShipFindCustomShipInfoByType(Player(),'FHDFindQuestMenu');",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "001",
+                          "value": "if(menu<0){CloseCustomForm();exit;}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "002",
+                          "value": "int visible=ShipCustomShipInfoData(Player(),menu,1);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "003",
+                          "value": "int page=ShipCustomShipInfoData(Player(),menu,2);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "004",
+                          "value": "int pages=ShipCustomShipInfoData(Player(),menu,3);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "005",
+                          "value": "str pageRows=ShipCustomShipInfoTextData(Player(),menu,1);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "006",
+                          "value": "CustomInterfaceText('Page','Страница '+(page+1)+' / '+pages+'   -   '+ShipCustomShipInfoTextData(Player(),menu,2));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "007",
+                          "value": "if(page<1)CustomInterfaceState('Prev',2);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "008",
+                          "value": "if(page+1>=pages)CustomInterfaceState('Next',2);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "009",
+                          "value": "CustomInterfaceState('Row0',0<visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "010",
+                          "value": "if(0<visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "011",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "012",
+                          "value": "str row0=GetParFromString(pageRows,'\\n',0,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "013",
+                          "value": "CustomInterfaceText('Row0System',GetParFromString(row0,'|',0,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "014",
+                          "value": "CustomInterfaceText('Row0Planet',GetParFromString(row0,'|',1,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "015",
+                          "value": "CustomInterfaceText('Row0Type',GetParFromString(row0,'|',2,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "016",
+                          "value": "CustomInterfaceText('Row0Reward',GetParFromString(row0,'|',3,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "017",
+                          "value": "CustomInterfaceText('Row0Checked','> '+GetParFromString(row0,'|',4,1));CustomInterfaceText('Row0Distance',GetParFromString(row0,'|',5,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "018",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "019",
+                          "value": "CustomInterfaceState('Row1',1<visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "020",
+                          "value": "if(1<visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "021",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "022",
+                          "value": "str row1=GetParFromString(pageRows,'\\n',1,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "023",
+                          "value": "CustomInterfaceText('Row1System',GetParFromString(row1,'|',0,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "024",
+                          "value": "CustomInterfaceText('Row1Planet',GetParFromString(row1,'|',1,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "025",
+                          "value": "CustomInterfaceText('Row1Type',GetParFromString(row1,'|',2,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "026",
+                          "value": "CustomInterfaceText('Row1Reward',GetParFromString(row1,'|',3,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "027",
+                          "value": "CustomInterfaceText('Row1Checked','> '+GetParFromString(row1,'|',4,1));CustomInterfaceText('Row1Distance',GetParFromString(row1,'|',5,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "028",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "029",
+                          "value": "CustomInterfaceState('Row2',2<visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "030",
+                          "value": "if(2<visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "031",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "032",
+                          "value": "str row2=GetParFromString(pageRows,'\\n',2,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "033",
+                          "value": "CustomInterfaceText('Row2System',GetParFromString(row2,'|',0,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "034",
+                          "value": "CustomInterfaceText('Row2Planet',GetParFromString(row2,'|',1,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "035",
+                          "value": "CustomInterfaceText('Row2Type',GetParFromString(row2,'|',2,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "036",
+                          "value": "CustomInterfaceText('Row2Reward',GetParFromString(row2,'|',3,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "037",
+                          "value": "CustomInterfaceText('Row2Checked','> '+GetParFromString(row2,'|',4,1));CustomInterfaceText('Row2Distance',GetParFromString(row2,'|',5,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "038",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "039",
+                          "value": "CustomInterfaceState('Row3',3<visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "040",
+                          "value": "if(3<visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "041",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "042",
+                          "value": "str row3=GetParFromString(pageRows,'\\n',3,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "043",
+                          "value": "CustomInterfaceText('Row3System',GetParFromString(row3,'|',0,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "044",
+                          "value": "CustomInterfaceText('Row3Planet',GetParFromString(row3,'|',1,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "045",
+                          "value": "CustomInterfaceText('Row3Type',GetParFromString(row3,'|',2,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "046",
+                          "value": "CustomInterfaceText('Row3Reward',GetParFromString(row3,'|',3,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "047",
+                          "value": "CustomInterfaceText('Row3Checked','> '+GetParFromString(row3,'|',4,1));CustomInterfaceText('Row3Distance',GetParFromString(row3,'|',5,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "048",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "049",
+                          "value": "CustomInterfaceState('Row4',4<visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "050",
+                          "value": "if(4<visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "051",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "052",
+                          "value": "str row4=GetParFromString(pageRows,'\\n',4,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "053",
+                          "value": "CustomInterfaceText('Row4System',GetParFromString(row4,'|',0,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "054",
+                          "value": "CustomInterfaceText('Row4Planet',GetParFromString(row4,'|',1,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "055",
+                          "value": "CustomInterfaceText('Row4Type',GetParFromString(row4,'|',2,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "056",
+                          "value": "CustomInterfaceText('Row4Reward',GetParFromString(row4,'|',3,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "057",
+                          "value": "CustomInterfaceText('Row4Checked','> '+GetParFromString(row4,'|',4,1));CustomInterfaceText('Row4Distance',GetParFromString(row4,'|',5,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "058",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "059",
+                          "value": "CustomInterfaceState('Row5',5<visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "060",
+                          "value": "if(5<visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "061",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "062",
+                          "value": "str row5=GetParFromString(pageRows,'\\n',5,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "063",
+                          "value": "CustomInterfaceText('Row5System',GetParFromString(row5,'|',0,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "064",
+                          "value": "CustomInterfaceText('Row5Planet',GetParFromString(row5,'|',1,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "065",
+                          "value": "CustomInterfaceText('Row5Type',GetParFromString(row5,'|',2,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "066",
+                          "value": "CustomInterfaceText('Row5Reward',GetParFromString(row5,'|',3,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "067",
+                          "value": "CustomInterfaceText('Row5Checked','> '+GetParFromString(row5,'|',4,1));CustomInterfaceText('Row5Distance',GetParFromString(row5,'|',5,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "068",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "069",
+                          "value": "CustomInterfaceState('Row6',6<visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "070",
+                          "value": "if(6<visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "071",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "072",
+                          "value": "str row6=GetParFromString(pageRows,'\\n',6,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "073",
+                          "value": "CustomInterfaceText('Row6System',GetParFromString(row6,'|',0,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "074",
+                          "value": "CustomInterfaceText('Row6Planet',GetParFromString(row6,'|',1,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "075",
+                          "value": "CustomInterfaceText('Row6Type',GetParFromString(row6,'|',2,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "076",
+                          "value": "CustomInterfaceText('Row6Reward',GetParFromString(row6,'|',3,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "077",
+                          "value": "CustomInterfaceText('Row6Checked','> '+GetParFromString(row6,'|',4,1));CustomInterfaceText('Row6Distance',GetParFromString(row6,'|',5,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "078",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "079",
+                          "value": "CustomInterfaceState('Row7',7<visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "080",
+                          "value": "if(7<visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "081",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "082",
+                          "value": "str row7=GetParFromString(pageRows,'\\n',7,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "083",
+                          "value": "CustomInterfaceText('Row7System',GetParFromString(row7,'|',0,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "084",
+                          "value": "CustomInterfaceText('Row7Planet',GetParFromString(row7,'|',1,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "085",
+                          "value": "CustomInterfaceText('Row7Type',GetParFromString(row7,'|',2,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "086",
+                          "value": "CustomInterfaceText('Row7Reward',GetParFromString(row7,'|',3,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "087",
+                          "value": "CustomInterfaceText('Row7Checked','> '+GetParFromString(row7,'|',4,1));CustomInterfaceText('Row7Distance',GetParFromString(row7,'|',5,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "088",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "089",
+                          "value": "CustomInterfaceState('Row8',8<visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "090",
+                          "value": "if(8<visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "091",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "092",
+                          "value": "str row8=GetParFromString(pageRows,'\\n',8,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "093",
+                          "value": "CustomInterfaceText('Row8System',GetParFromString(row8,'|',0,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "094",
+                          "value": "CustomInterfaceText('Row8Planet',GetParFromString(row8,'|',1,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "095",
+                          "value": "CustomInterfaceText('Row8Type',GetParFromString(row8,'|',2,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "096",
+                          "value": "CustomInterfaceText('Row8Reward',GetParFromString(row8,'|',3,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "097",
+                          "value": "CustomInterfaceText('Row8Checked','> '+GetParFromString(row8,'|',4,1));CustomInterfaceText('Row8Distance',GetParFromString(row8,'|',5,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "098",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "099",
+                          "value": "CustomInterfaceState('Row9',9<visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "100",
+                          "value": "if(9<visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "101",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "102",
+                          "value": "str row9=GetParFromString(pageRows,'\\n',9,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "103",
+                          "value": "CustomInterfaceText('Row9System',GetParFromString(row9,'|',0,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "104",
+                          "value": "CustomInterfaceText('Row9Planet',GetParFromString(row9,'|',1,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "105",
+                          "value": "CustomInterfaceText('Row9Type',GetParFromString(row9,'|',2,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "106",
+                          "value": "CustomInterfaceText('Row9Reward',GetParFromString(row9,'|',3,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "107",
+                          "value": "CustomInterfaceText('Row9Checked','> '+GetParFromString(row9,'|',4,1));CustomInterfaceText('Row9Distance',GetParFromString(row9,'|',5,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "108",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "109",
+                          "value": "CustomInterfaceState('Row10',10<visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "110",
+                          "value": "if(10<visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "111",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "112",
+                          "value": "str row10=GetParFromString(pageRows,'\\n',10,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "113",
+                          "value": "CustomInterfaceText('Row10System',GetParFromString(row10,'|',0,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "114",
+                          "value": "CustomInterfaceText('Row10Planet',GetParFromString(row10,'|',1,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "115",
+                          "value": "CustomInterfaceText('Row10Type',GetParFromString(row10,'|',2,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "116",
+                          "value": "CustomInterfaceText('Row10Reward',GetParFromString(row10,'|',3,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "117",
+                          "value": "CustomInterfaceText('Row10Checked','> '+GetParFromString(row10,'|',4,1));CustomInterfaceText('Row10Distance',GetParFromString(row10,'|',5,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "118",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "119",
+                          "value": "CustomInterfaceState('Row11',11<visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "120",
+                          "value": "if(11<visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "121",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "122",
+                          "value": "str row11=GetParFromString(pageRows,'\\n',11,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "123",
+                          "value": "CustomInterfaceText('Row11System',GetParFromString(row11,'|',0,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "124",
+                          "value": "CustomInterfaceText('Row11Planet',GetParFromString(row11,'|',1,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "125",
+                          "value": "CustomInterfaceText('Row11Type',GetParFromString(row11,'|',2,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "126",
+                          "value": "CustomInterfaceText('Row11Reward',GetParFromString(row11,'|',3,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "127",
+                          "value": "CustomInterfaceText('Row11Checked','> '+GetParFromString(row11,'|',4,1));CustomInterfaceText('Row11Distance',GetParFromString(row11,'|',5,1));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "128",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        }
+                      ],
+                      "sorted": true
+                    },
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "block",
+                    "name": "Open",
+                    "value": {
+                      "entries": [
+                        {
+                          "kind": "parameter",
+                          "name": "000",
+                          "value": "unknown init=ImportedFunction('FHDFindQuestNative','Init');",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "001",
+                          "value": "int initResult=init();",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "002",
+                          "value": "unknown probe=ImportedFunction('FHDFindQuestNative','Probe');",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "003",
+                          "value": "unknown rewardFn=ImportedFunction('FHDFindQuestNative','Reward');",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "004",
+                          "value": "unknown targetFn=ImportedFunction('FHDFindQuestNative','Target');",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "005",
+                          "value": "unknown rows=newarray(1);rows[0]='';",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "006",
+                          "value": "unknown planets=newarray(1);planets[0]=0;unknown current=newarray(1);current[0]=0;unknown targetStars=newarray(1);targetStars[0]=0;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "007",
+                          "value": "int count=0;int unavailable=(initResult!=0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "008",
+                          "value": "dword playerStar=ShipStar(Player());if(!playerStar){unavailable=1;initResult=-1;}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "009",
+                          "value": "for(int s=0;initResult==0 && s<GalaxyStars();s=s+1)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "010",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "011",
+                          "value": "dword star=GalaxyStar(s);if(!star)continue;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "012",
+                          "value": "if(star!=playerStar && !SectorVisible(StarToCon(star)))continue;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "013",
+                          "value": "if(StarOwner(star)!=0)continue;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "014",
+                          "value": "int distance=0;if(star!=playerStar)distance=round(sqrt(Dist2Star(playerStar,star)));if(distance>35)continue;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "015",
+                          "value": "for(int p=0;p<StarPlanets(star);p=p+1)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "016",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "017",
+                          "value": "dword planet=StarPlanets(star,p);if(!planet)continue;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "018",
+                          "value": "int owner=PlanetOwner(planet);if(owner>4 && owner!=7)continue;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "019",
+                          "value": "int kind=probe(planet);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "020",
+                          "value": "if(kind==-2){unavailable=1;break;}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "021",
+                          "value": "if(kind<0 || kind>5)continue;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "022",
+                          "value": "str type='Квест';",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "023",
+                          "value": "if(kind==0)type='Доставка';",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "024",
+                          "value": "if(kind==1)type='Уничтожить';",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "025",
+                          "value": "if(kind==3 || kind==4)type='Охрана';",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "026",
+                          "value": "if(kind==5)type='Планетарный бой';",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "027",
+                          "value": "str reward=rewardFn()+' кр.';if(kind==5)reward='-';",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "028",
+                          "value": "dword objective=0;dword goalStar=0;str destination='Не определено';",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "029",
+                          "value": "if(kind==5){goalStar=star;destination=StarName(star)+' / '+PlanetName(planet);}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "030",
+                          "value": "else",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "031",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "032",
+                          "value": "objective=targetFn();",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "033",
+                          "value": "if(objective)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "034",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "035",
+                          "value": "if(kind==0 || kind==2){goalStar=PlanetToStar(objective);if(goalStar)destination=StarName(goalStar)+' / '+PlanetName(objective);}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "036",
+                          "value": "if(kind==1 || kind==4){goalStar=ShipStar(objective);if(goalStar)destination=StarName(goalStar)+' / '+ShipName(objective);}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "037",
+                          "value": "if(kind==3){goalStar=objective;destination=StarName(goalStar);}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "038",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "039",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "040",
+                          "value": "str row=StarName(star)+'|'+PlanetName(planet)+'|'+type+'|'+reward+'|'+destination+'|'+distance+' пк';",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "041",
+                          "value": "if(count==0){rows[0]=row;planets[0]=Id(planet);current[0]=(star==playerStar);targetStars[0]=goalStar;}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "042",
+                          "value": "else{ArrayAdd(rows,row);ArrayAdd(planets,Id(planet));ArrayAdd(current,(star==playerStar));ArrayAdd(targetStars,goalStar);}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "043",
+                          "value": "count=count+1;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "044",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "045",
+                          "value": "if(unavailable)break;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "046",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "047",
+                          "value": "for(int i=1;i<count;i=i+1)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "048",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "049",
+                          "value": "for(int j=i;j>0;j=j-1)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "050",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "051",
+                          "value": "str left=rows[j-1];str right=rows[j];",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "052",
+                          "value": "if(current[j-1]==current[j]){str leftName=GetParFromString(left,'|',0,1);str rightName=GetParFromString(right,'|',0,1);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "053",
+                          "value": "if(leftName==rightName){leftName=GetParFromString(left,'|',1,1);rightName=GetParFromString(right,'|',1,1);}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "054",
+                          "value": "if(min(leftName,rightName)==leftName)break;}else if(current[j-1]>current[j])break;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "055",
+                          "value": "int leftPlanet=planets[j-1];rows[j-1]=right;rows[j]=left;planets[j-1]=planets[j];planets[j]=leftPlanet;int leftCurrent=current[j-1];current[j-1]=current[j];current[j]=leftCurrent;dword leftGoal=targetStars[j-1];targetStars[j-1]=targetStars[j];targetStars[j]=leftGoal;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "056",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "057",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "058",
+                          "value": "if(count==0 || unavailable)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "059",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "060",
+                          "value": "rows[0]='-|-|Нет доступных заданий|-|-|-';planets[0]=0;targetStars[0]=0;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "061",
+                          "value": "if(unavailable)rows[0]='-|-|Сканирование недоступно|-|Код '+initResult+'|-';",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "062",
+                          "value": "count=1;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "063",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "064",
+                          "value": "ShipDeleteCustomShipInfo(Player(),'FHDFindQuestMenu');",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "065",
+                          "value": "int menu=ShipAddCustomShipInfo(Player(),'FHDFindQuestMenu','NoShow',0,0,0,'','','');",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "066",
+                          "value": "float scale=min(1.0,min((GetGameOptions('ResolutionX')-16)/1003.0,(GetGameOptions('ResolutionY')-16)/711.0));int pitch=max(27,round(32*scale));int capacity=min(12,max(1,round((round(620*scale)-106-round(114*scale))/pitch-0.4999)));int page=0;int pages=(count+capacity-1)/capacity;int keepOpen=1;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "067",
+                          "value": "while(keepOpen)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "068",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "069",
+                          "value": "int visible=count-page*capacity;if(visible>capacity)visible=capacity;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "070",
+                          "value": "str pageRows='';",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "071",
+                          "value": "for(int r=0;r<visible;r=r+1){if(r>0)pageRows=pageRows+'\\n';pageRows=pageRows+rows[page*capacity+r];}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "072",
+                          "value": "ShipCustomShipInfoData(Player(),menu,1,visible);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "073",
+                          "value": "ShipCustomShipInfoData(Player(),menu,2,page);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "074",
+                          "value": "ShipCustomShipInfoData(Player(),menu,3,pages);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "075",
+                          "value": "ShipCustomShipInfoTextData(Player(),menu,1,pageRows);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "076",
+                          "value": "ShipCustomShipInfoTextData(Player(),menu,2,'до 35 пк; доступно: '+(count-(planets[0]==0)));",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "077",
+                          "value": "int choice=OpenCustomForm('FHDFindQuestList');",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "078",
+                          "value": "if(choice==2 && page>0)page=page-1;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "079",
+                          "value": "else if(choice==3 && page+1<pages)page=page+1;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "080",
+                          "value": "else if(choice>=4 && choice<4+visible)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "081",
+                          "value": "{",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "082",
+                          "value": "int selected=planets[page*capacity+choice-4];",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "083",
+                          "value": "if(selected>0){dword goal=targetStars[page*capacity+choice-4];if(goal)ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.FHDFindQuest.PlaceMark'),'star',goal);}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "084",
+                          "value": "keepOpen=0;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "085",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "086",
+                          "value": "else keepOpen=0;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "087",
+                          "value": "}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "088",
+                          "value": "ShipDeleteCustomShipInfo(Player(),menu);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        }
+                      ],
+                      "sorted": true
+                    },
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "block",
+                    "name": "PlaceMark",
+                    "value": {
+                      "entries": [
+                        {
+                          "kind": "parameter",
+                          "name": "00",
+                          "value": "if(!star)exit;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "01",
+                          "value": "float x=CoordX(star)*100;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "02",
+                          "value": "x=x/150;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "03",
+                          "value": "x=x*768;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "04",
+                          "value": "x=x/100;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "05",
+                          "value": "float y=CoordY(star)*527;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "06",
+                          "value": "y=y/100;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "07",
+                          "value": "InterfacePos('Galaxy','FHDFindQuestMark',-25+x+CoordX(star)/5,-25+y,0);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "08",
+                          "value": "InterfaceState('Galaxy','FHDFindQuestMark',1);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "09",
+                          "value": "if(CurrentForm()!='Galaxy'){RunChildForm('Galaxy',2);ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.FHDFindQuest.ClearMark'));}",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        }
+                      ],
+                      "sorted": true
+                    },
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  }
+                ],
+                "sorted": true
+              },
+              "sort_meta": [
+                0,
+                1
+              ]
+            }
+          ],
+          "sorted": true
+        },
+        "sort_meta": [
+          0,
+          1
+        ]
+      },
+      {
+        "kind": "block",
+        "name": "ShipInfo",
+        "value": {
+          "entries": [
+            {
+              "kind": "block",
+              "name": "AddInfo",
+              "value": {
+                "entries": [
+                  {
+                    "kind": "block",
+                    "name": "CustomInfos",
+                    "value": {
+                      "entries": [
+                        {
+                          "kind": "block",
+                          "name": "FHDFindQuestMenu",
+                          "value": {
+                            "entries": [
+                              {
+                                "kind": "parameter",
+                                "name": "Description",
+                                "value": "Служебные данные открытой таблицы правительственных заданий",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "Icon",
+                                "value": "0",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "Name",
+                                "value": "Таблица правительственных заданий",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              }
+                            ],
+                            "sorted": true
+                          },
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        }
+                      ],
+                      "sorted": true
+                    },
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  }
+                ],
+                "sorted": true
+              },
+              "sort_meta": [
+                0,
+                1
+              ]
+            }
+          ],
+          "sorted": true
+        },
+        "sort_meta": [
+          0,
+          1
+        ]
+      }
+    ],
+    "sorted": true
+  }
+}
